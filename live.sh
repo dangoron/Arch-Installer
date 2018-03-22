@@ -30,7 +30,7 @@ partition() {
                     swapoff $OTHER > /dev/null 2>&1
                     mkswap $OTHER -f
                 ;;
-                (*) color red "Error ! Please input the num again" ;;
+                (*) color red "Error! Please input the num again" ;;
             }
             break
         }
@@ -73,7 +73,7 @@ prepare() {
 install() {
     color green "Please choose your country (for Generate the pacman mirror list"
     select COUNTRY ("AU" "AT" "BD" "BY" "BE" "BA" "BR" "BG" "CA" "CL" "CN" "CO" "HR" "CZ" "DK" "EC" "FI" "FR" "DE" "GR" "HK" "HU" "IS" "IN" "ID" "IR" "IE" "IL" "IT" "JP" "KZ" "LV" "LT" "LU" "MK" "MX" "AN" "NC" "NZ" "NO" "PH" "PL" "PT" "QA" "RO" "RU" "RS" "SG" "SK" "SI" "ZA" "KR" "ES" "SE" "CH" "TW" "TH" "TR" "UA" "GB" "US" "VN"){
-        mv /etc/pacman.d/mirrorlist /etc/mirrorlist.bak
+        mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
         color green "Generating mirror list , Please wait"
         wget https://www.archlinux.org/mirrorlist/\?country=$COUNTRY -O /etc/pacman.d/mirrorlist.new
         sed -i 's/#Server/Server/g' /etc/pacman.d/mirrorlist.new
